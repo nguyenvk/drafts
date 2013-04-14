@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Election Data</title>
+    <title>Draft Data</title>
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
     <div id="display"></div>
-    <button id="candidates-button" class="toggle" type="button">View candidates</button>
-    <button id="parties-button" class="toggle" type="button">View parties</button>
+    <button id="draft-button" class="toggle" type="button">View drafts</button>
+    <button id="selection-button" class="toggle" type="button">View selections</button>
     <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script>
 var loaded = null;
@@ -24,7 +24,7 @@ function load(path) {
 function onLinkClick(click) {
   click.preventDefault();
   var href = $(this).attr('href');
-  if (href == '/') { load('/parties/'); }
+  if (href == '/') { load('/drafts/'); } 
   else { load(href); }
 }
 function onFormSubmit(submit) {
@@ -48,9 +48,9 @@ function onFormSubmit(submit) {
   }
   $.ajax(o);
 }
-load('/parties/');
-$('#parties-button').click(function() { load('/parties/'); });
-$('#candidates-button').hide().click(function() { load('/candidates/'); });
+load('/drafts/');
+// <!-- turn this back on later --> $('#draft-button').click(function() { load('/drafts/'); });
+// $('#selection-button').hide().click(function() { load('/selections/'); });
     </script>
   </body>
 </html>
