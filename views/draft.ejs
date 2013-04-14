@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>z Data: <%=item.name%></title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <a href="/"><h1>Election Data</h1></a>
+    <dl>
+      <dt>Name</dt>
+      <dd><%=item.name%></dd>
+      <dt>Party</dt>
+      <dd><a href="/drafts/<%=item.draft%>"><%=item.draft%></a></dd>
+      <% if (item.image) { %>
+      <dt>Image URL</dt>
+      <dd><img src="<%=item.image%>" alt="<%=item.name%>"></dd>
+      <% } %>
+    </dl>
+    <div class="control">
+      <h2>Update draft</h2>
+      <form method="put" action="/drafts/<%=item._id%>">
+        <label>Name: 
+          <input name="item[name]" value="<%=item.name%>" type="text" required>
+        </label>
+        <label>Party: 
+          <select name="item[draft]" required>
+            <% related_items.forEach(function(related_item) { %>
+            <option value="<%=related_item._id%>"
+              <% if (related_item._id === item.draft) { %>selected<% } %>>
+              <%=related_item.name%>
+            </option>
+            <% }); %>
+          </select>
+        </label>
+        <label>Image URL:
+          <input name="item[image]" value="<%=item.image%>" type="url" size="80"> 
+        </label>
+        <button>Update</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nba Drafts Data</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <a href="/"><h1>NBA Drafts</h1></a>
+    <% if (items.length > 0) { %>
+    <ul>
+      <% items.forEach(function(item) { %>
+      <li><a href="/drafts/<%=item._id%>"><%=item.name%></a></li>
+      <% }); %>
+    </ul>
+    <% } else { %>
+    <div>No drafts have been added.</div>
+    <% } %>
+    <div class="control">
+      <h2>Add the next draft</h2>
+
+        <form id="create-draft" method="put" action="/drafts/">
+        <label>Draft Year: 
+          <input name="item[id]" type="text" required
+                   placeholder="2013">
+        </label>
+        <button>Add</button>
+      </form>
+      
+      
+      <!--
+     <form method="put" action="/parties/">
+        <label>Party ID<br>
+          (lowercase letters only, no spaces):
+          <input name="item[id]" type="text" pattern="[a-z]+" required
+                 placeholder="green">
+        </label>
+        <label>Party name: 
+          <input name="item[name]" type="text" required
+                 placeholder="The Green Party">
+        </label>
+        <label>Party description:
+          <textarea name="item[description]" cols="80" rows="10" 
+                    placeholder="The Green Party of the United States of America emphasizes environmentalism, non-hierarchical participatory democracy, social justice, respect for diversity, peace and nonviolence."
+          ></textarea>
+        </label>
+        <button>Add or update</button>
+      </form>
+        -->
+    </div>
+  </body>
+</html>
