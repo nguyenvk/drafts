@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Draft Data</title>
+    <title>NBA Draft Info</title>
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
     <div id="display"></div>
-    <button id="draft-button" class="toggle" type="button">View drafts</button>
-    <button id="selection-button" class="toggle" type="button">View selections</button>
+    <!--
+    <button id="selections-button" class="toggle" type="button">Search by selections</button>
+    <button id="drafts-button" class="toggle" type="button">View drafts</button>
+    -->
     <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script>
 var loaded = null;
@@ -24,7 +26,7 @@ function load(path) {
 function onLinkClick(click) {
   click.preventDefault();
   var href = $(this).attr('href');
-  if (href == '/') { load('/drafts/'); } 
+  if (href == '/') { load('/drafts/'); }
   else { load(href); }
 }
 function onFormSubmit(submit) {
@@ -49,8 +51,8 @@ function onFormSubmit(submit) {
   $.ajax(o);
 }
 load('/drafts/');
-// <!-- turn this back on later --> $('#draft-button').click(function() { load('/drafts/'); });
-// $('#selection-button').hide().click(function() { load('/selections/'); });
+$('#drafts-button').click(function() { load('/drafts/'); });
+$('#selections-button').hide().click(function() { load('/selections/'); });
     </script>
   </body>
 </html>

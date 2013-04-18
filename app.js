@@ -30,7 +30,7 @@ var db = utils.connectToDatabase(USER_OR_GROUP_NAME);
 // Example of handling PUT to create or update a resource. /////////////////////
 // Here we create or update an item using the ID specified in the URI. /////////
 ////////////////////////////////////////////////////////////////////////////////
-app.put('/drafts/:id/',      // TODO: change to suit your URI design.
+app.put('/drafts/:id',      // TODO: change to suit your URI design.
   function(req, res) {
   
     // Get the item ID from the URI.
@@ -39,7 +39,6 @@ app.put('/drafts/:id/',      // TODO: change to suit your URI design.
     // Get the item info that was PUT from the input form.
     // See the form in `views/list-parties.ejs`.
     var item = req.body.item;
-    console.log("the item id is: ", item);
     
     item.type = 'draft'; // TODO: change to the type of item you want
 
@@ -50,7 +49,7 @@ app.put('/drafts/:id/',      // TODO: change to suit your URI design.
       if (err) { res.send(err, 500); } 
       
       // Otherwise, send back the location of the created/updated item.
-      else { res.send('', { Location: '/draft/' + item_id }, 204); }
+      else { res.send('', { Location: '/drafts/' + item_id }, 204); }
     });
   }
 );
@@ -73,8 +72,8 @@ app.get('/drafts/',         // TODO: change to suit your URI design.
       // Otherwise, use the returned data to render an HTML page.
       else {
         res.render(
-          'drafts',   // TODO: change to the name of your HTML template.
-          { items: items }
+          'list-drafts',   // TODO: change to the name of your HTML template.
+          { items: items,related_items: items }
         );
       }
     });
@@ -115,11 +114,12 @@ app.put('/selections/:id', // TODO: change to suit your URI design.
   
     // Get the item ID from the URI.
     var item_id = req.params.id;
+    console.log(item_id);
 
     // Get the item info that was PUT from the input form.
     // See the form in `views/one-candidate.ejs`.
     var item = req.body.item;
-
+    console.log(item);
     item.type = 'selection'; // TODO: change to the type of item you want
 
     // Save the new item to the database, specifying the ID.
@@ -129,7 +129,9 @@ app.put('/selections/:id', // TODO: change to suit your URI design.
       if (err) { res.send(err, 500); } 
       
       // Otherwise, send back the location of the updated item.
-      else { res.send('', { Location: '/selections/' + item_id }, 204); }
+      else { console.log("showing updated page");
+
+          res.send('', { Location: '/selections/' + item_id }, 204); }
     });
   }
 );
@@ -138,21 +140,26 @@ app.put('/selections/:id', // TODO: change to suit your URI design.
 // Another example of handling GET of a "collection" resource. /////////////////
 // This time we support filtering the list by some criteria (i.e. searching). //
 ////////////////////////////////////////////////////////////////////////////////
-app.get('/drafts/',          // TODO: change to suit your URI design. 
+app.get('/selections/',          // TODO: change to suit your URI design. 
   function(req, res) {
-
-    var item_type = 'draft'; // TODO: change to the type of item you want.
+    
+    console.log("enter search");
+    
+    
+    var item_type = 'selection'; // TODO: change to the type of item you want.
 
     // Get items of the specified type that match the query.
     db.getSome(item_type, req.query, function(err, items) {
+        console.log("captured keyword");
 
       // If there was a database error, return an error status.
       if (err) { res.send(err, 500); } 
 
       // Otherwise, use the returned data to render an HTML page.
       else {
+        console.log(req.query);
         res.render(
-          'drafts', // TODO: change to the name of your HTML template.
+          'list-selections', // TODO: change to the name of your HTML template.
           { items: items }
         );
       }
@@ -165,7 +172,7 @@ app.get('/drafts/',          // TODO: change to suit your URI design.
 // This handler is more complicated, because we want to show not only the //////
 // item requested, but also links to a set of related items. ///////////////////
 ////////////////////////////////////////////////////////////////////////////////
-app.get('/draft/:id',      // TODO: change to suit your URI design.
+app.get('/drafts/:id',      // TODO: change to suit your URI design.
   function(req, res) {
 
     var item_type = 'draft'; // TODO: change to the type of item you want.
@@ -188,7 +195,7 @@ app.get('/draft/:id',      // TODO: change to suit your URI design.
         var related_type = 'selection'; // TODO: change to type of related item.
 
         // Set our query to find the items related to the requested item.
-        req.query.selection = item_id; // TODO: change `party` to reflect the
+        req.query.draft = item_id; // TODO: change `party` to reflect the
                                    // relation between the item fetched above
                                    // and the related items to be fetched below.
 
@@ -201,7 +208,7 @@ app.get('/draft/:id',      // TODO: change to suit your URI design.
           // Otherwise, use the returned data to render an HTML page.
           else {
             res.render(
-            'selection', // TODO: change to the name of your HTML template.
+            'one-draft', // TODO: change to the name of your HTML template.
               { item: item, related_items: items }
             );
           }
@@ -217,10 +224,10 @@ app.get('/draft/:id',      // TODO: change to suit your URI design.
 // item requested, but also a list of potential related items, so that users ///
 // can select from a list when updating the item. //////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-app.get('/drafts/:id',       // TODO: change to suit your URI design.
+app.get('/selections/:id',       // TODO: change to suit your URI design.
   function(req, res) {
 
-    var item_type = 'draft'; // TODO: change to the type of item you want.
+    var item_type = 'selection'; // TODO: change to the type of item you want.
 
     // Get the item ID from the URI.
     var item_id = req.params.id;
@@ -248,7 +255,7 @@ app.get('/drafts/:id',       // TODO: change to suit your URI design.
           // Otherwise, use the returned data to render an HTML page.
           else {
             res.render(
-              'draft', // TODO: change to name of your HTML template.
+              'one-selection', // TODO: change to name of your HTML template.
               { item: item, related_items: items }
             );
           }

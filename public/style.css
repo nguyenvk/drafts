@@ -1,10 +1,13 @@
 .control {
-  border: 1px solid gray;
+  border: 0px solid gray;
   margin: 30px 10px 10px;
-  padding: 10px;
+  padding: 5px;
+  background-color:#e6e6e6;
+    width: 180px;
 }
 .control h2 {
-  margin: 10px 0; 
+  margin: 0px 0;
+
 }
 label, input, textarea, select, button {
   display: block;  
@@ -14,6 +17,7 @@ label {
 }
 button {
   margin-top: 20px;
+  font-family:"Cambria";
 } 
 dt {
   font-weight: bold;
@@ -23,4 +27,14 @@ dd {
 }
 .error {
   color: red;  
+}
+
+body { 
+    font-family:"Cambria" ;
+    background-color:#ffffff;
+    background-image: url('http://www.logodesignlove.com/images/classic/nba-logo.jpg');
+    background-repeat:no-repeat;
+    background-size:125px 125px;
+    background-position:right top;
+
 }

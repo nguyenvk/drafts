@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NBA Draft Data</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <h2>NBA Drafts Database </h2>
+    <% if (items.length > 0) { %>
+    <ul>
+      <% items.forEach(function(item) { %>
+      <li><a href="/drafts/<%=item._id%>"><%=item._id%></a>
+      </li>
+      
+      <% }); %>
+    </ul>
+    <% } else { %>
+    <div>No drafts have been entered.</div>
+    <% } %>
+    
+    
+    <div class="control">
+      <h4>Add Draft</h4>
+      <form method="put" action="/drafts/">
+        <label>Year (YYYY):
+          <input name="item[id]" type="text" pattern="[0-9]+" required
+                 placeholder="2013">
+        </label>
+        
+
+        <label> 
+          <input name="item[name]" type="hidden" 
+                 value="NBA_Draft">
+        </label>
+        <button>Submit</button>
+      </form>
+            
+    </div>
+    <p>
+     &nbsp; <a href="/selections/"> View all selections </a>
+     </p>
+  </body>
+</htm

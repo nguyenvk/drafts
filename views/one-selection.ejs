@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=item.name%></title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <em><strong><%=item.player%></strong></em>
+    <dl>
+      <dt>Selection:</dt>
+      <dd><%=item.name%></dd>
+      <% if (item.description) { %>
+      <dt>Description</dt>
+      <dd><%=item.description%></dd>
+      <% } %>
+      <dt>Round:</dt>
+      <dd>Round <%=item.number%></dd>
+      <dt>Team:</dt>
+      <dd><%=item.team%></dd> 
+      <!--
+      <dt>Player:</dt>
+      <dd><%=item.player%></dd>
+      -->
+      <dt>Position:</dt>
+      <dd><%=item.position%></dd>
+    
+    <span>
+    Return to:
+    <a href="/drafts/<%=item.year%>"><%=item.year%></a> NBA Draft.  
+    
+    </span> 
+    
+     
+
+    <div class="control">
+      <h2>Edit selection</h2>
+     <form method="put" action="/selections/<%=item._id%>">
+        
+        <input type="hidden" name="item[draft]" value="<%=item.draft%>">
+        
+        <input type="hidden" name="item[year]" value="<%=item.year%>">
+
+        
+        <input name="item[name]" type="hidden" 
+                    value="<%=item.name%>">
+        
+        <input name="item[number]" type="hidden" 
+                    value="<%=item.number%>">
+
+        
+        <label>Team Selecting: 
+        <input name="item[team]" type="text" 
+                   value="<%=item.team%>">
+        </label>
+
+        
+        <label>Player Selected: 
+        <input name="item[player]" type="text" 
+                   value="<%=item.player%>">
+        </label>
+        
+        <label>Player Position 
+        <input name="item[position]" type="text" 
+                   value="<%=item.position%>">
+        </label>
+        <button>Add</button>
+      </form>
+      
+    </div>
+    
+
+    
+    
+  </body>
+</html>
