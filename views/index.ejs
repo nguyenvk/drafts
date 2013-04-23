@@ -5,54 +5,12 @@
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <div id="display"></div>
-    <!--
-    <button id="selections-button" class="toggle" type="button">Search by selections</button>
-    <button id="drafts-button" class="toggle" type="button">View drafts</button>
-    -->
-    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-    <script>
-var loaded = null;
-function load(path) {
-  if (path === loaded) { return; }
-  $.get(path, function (data) {
-    loaded = path;
-    $('#display').html(data);
-    $('.toggle').toggle();
-    $("a").click(onLinkClick);
-    $("form").submit(onFormSubmit);
-  });
-}
-function onLinkClick(click) {
-  click.preventDefault();
-  var href = $(this).attr('href');
-  if (href == '/') { load('/drafts/'); }
-  else { load(href); }
-}
-function onFormSubmit(submit) {
-  submit.preventDefault();
-  var form = $(this);
-  var o = { 
-    url: form.attr('action'),
-    type: form.attr('method'),
-    data: form.serialize(),
-    success: function(data, status, xhr) {
-      if (status == 'success') {
-        load(xhr.getResponseHeader('Location'));
-      } else {
-        $('#display').html('<span class="error">Hmmm... something broke.</span>');
-      } 
-    }
-  };
-  if (o.type == 'put' && 'item[id]' in this.elements) {
-    o.url += this.elements['item[id]'].value;
-    o.data = o.data.split('&').slice(1).join('&');
-  }
-  $.ajax(o);
-}
-load('/drafts/');
-$('#drafts-button').click(function() { load('/drafts/'); });
-$('#selections-button').hide().click(function() { load('/selections/'); });
-    </script>
+    <a href="/"><h1>NBA Draft Database</h1></a>
+    <div>
+      <a href="/drafts/"><h2>Drafts</h2></a>
+    <div>
+    <div>
+      <a href="/selections/"><h2>Selections</h2></a>
+    <div>
   </body>
 </html>

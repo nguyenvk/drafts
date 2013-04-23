@@ -1,27 +1,55 @@
-<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>NBA Draft Data</title>
+    <title>Election Data: Parties</title>
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <h2>NBA Drafts Database </h2>
+  <h2>NBA Drafts Database </h2>
+    <!--<a href="/"><h1>Election Data</h1></a> -->
     <% if (items.length > 0) { %>
     <ul>
       <% items.forEach(function(item) { %>
-      <li><a href="/drafts/<%=item._id%>"><%=item._id%></a>
-      </li>
-      
+      <li><a href="/drafts/<%=item._id%>"><%=item._id%></a></li>
       <% }); %>
     </ul>
     <% } else { %>
-    <div>No drafts have been entered.</div>
+    <div>No parties have been added.</div>
     <% } %>
-    
-    
     <div class="control">
       <h4>Add Draft</h4>
-      <form method="put" action="/drafts/">
+      <script>
+      function onFormSubmit(form) {
+        form.action = form.action + form.elements['item[id]'].value;
+        console.log(form.action);
+        return true;
+      } 
+      </script>
+     <!-- <form method="post" action="/drafts/"
+            onsubmit="return onFormSubmit(this);">
+        The line above dynamically sets the PUT destination when the 
+        form is submitted. --------------------------------------------
+        <input type="hidden" name="_method" value="put">
+         The line above tells the server to treat this as a PUT request. --
+        <label>Party ID<br>
+          (lowercase letters only, no spaces):
+          <input name="item[id]" type="text" pattern="[a-z]+" required
+                 placeholder="green">
+        </label>
+        <label>Party name: 
+          <input name="item[name]" type="text" required
+                 placeholder="The Green Party">
+        </label>
+        <label>Party description:
+          <textarea name="item[description]" cols="80" rows="10" 
+                    placeholder="The Green Party of the United States of America emphasizes environmentalism, non-hierarchical participatory democracy, social justice, respect for diversity, peace and nonviolence."
+          ></textarea>
+        </label>
+        <button>Add or update</button>
+      </form> --> 
+      
+        <form method="post" action="/drafts/" onsubmit="return onFormSubmit(this);">
+        <input type="hidden" name="_method" value="put">
         <label>Year (YYYY):
           <input name="item[id]" type="text" pattern="[0-9]+" required
                  placeholder="2013">
@@ -34,10 +62,13 @@
         </label>
         <button>Submit</button>
       </form>
-            
+      
     </div>
-    <p>
+    
+                  <p>
      &nbsp; <a href="/selections/"> View all selections </a>
      </p>
+     
+     
   </body>
-</htm
+</html>

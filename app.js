@@ -48,8 +48,8 @@ app.put('/drafts/:id',      // TODO: change to suit your URI design.
       // If there was a database error, return an error status.
       if (err) { res.send(err, 500); } 
       
-      // Otherwise, send back the location of the created/updated item.
-      else { res.send('', { Location: '/drafts/' + item_id }, 204); }
+      // Otherwise, redirect back to the URI from which the form was submitted.
+      else { res.redirect('back' ); }
     });
   }
 );
@@ -73,7 +73,7 @@ app.get('/drafts/',         // TODO: change to suit your URI design.
       else {
         res.render(
           'list-drafts',   // TODO: change to the name of your HTML template.
-          { items: items,related_items: items }
+          { items: items }
         );
       }
     });
@@ -94,13 +94,13 @@ app.post('/selections/', // TODO: change to suit your URI design.
     item.type = 'selection'; // TODO: change to the type of item you want
 
     // Save the new item to the database. (No ID specified, it will be created.)
-    db.save(item, function(err, item) {
+    db.save(item, function(err) {
 
       // If there was a database error, return an error status.
       if (err) { res.send(err, 500); } 
       
-      // Otherwise, send back the location of the created item.
-      else { res.send('', { Location: '/selections/' + item.id }, 204); }
+      // Otherwise, redirect back to the URI from which the form was submitted.
+      else { res.redirect('back' ); }
     });
   }
 );
@@ -114,12 +114,11 @@ app.put('/selections/:id', // TODO: change to suit your URI design.
   
     // Get the item ID from the URI.
     var item_id = req.params.id;
-    console.log(item_id);
 
     // Get the item info that was PUT from the input form.
     // See the form in `views/one-candidate.ejs`.
     var item = req.body.item;
-    console.log(item);
+
     item.type = 'selection'; // TODO: change to the type of item you want
 
     // Save the new item to the database, specifying the ID.
@@ -128,10 +127,8 @@ app.put('/selections/:id', // TODO: change to suit your URI design.
       // If there was a database error, return an error status.
       if (err) { res.send(err, 500); } 
       
-      // Otherwise, send back the location of the updated item.
-      else { console.log("showing updated page");
-
-          res.send('', { Location: '/selections/' + item_id }, 204); }
+      // Otherwise, redirect back to the URI from which the form was submitted.
+      else { res.redirect('back' ); }
     });
   }
 );
@@ -142,22 +139,17 @@ app.put('/selections/:id', // TODO: change to suit your URI design.
 ////////////////////////////////////////////////////////////////////////////////
 app.get('/selections/',          // TODO: change to suit your URI design. 
   function(req, res) {
-    
-    console.log("enter search");
-    
-    
+
     var item_type = 'selection'; // TODO: change to the type of item you want.
 
     // Get items of the specified type that match the query.
     db.getSome(item_type, req.query, function(err, items) {
-        console.log("captured keyword");
 
       // If there was a database error, return an error status.
       if (err) { res.send(err, 500); } 
 
       // Otherwise, use the returned data to render an HTML page.
       else {
-        console.log(req.query);
         res.render(
           'list-selections', // TODO: change to the name of your HTML template.
           { items: items }

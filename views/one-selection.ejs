@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%=item.name%></title>
+    <title>Election Data: <%=item.name%></title>
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <em><strong><%=item.player%></strong></em>
+      <em><strong><%=item.player%></strong></em>
     <dl>
       <dt>Selection:</dt>
       <dd><%=item.name%></dd>
@@ -29,13 +29,23 @@
     <a href="/drafts/<%=item.year%>"><%=item.year%></a> NBA Draft.  
     
     </span> 
-    
-     
-
+  <!--
+    <a href="/"><h1>Election Data</h1></a>
+    <dl>
+      <dt>Name</dt>
+      <dd><%=item.name%></dd>
+      <dt>Party</dt>
+      <dd><a href="/parties/<%=item.party%>"><%=item.party%></a></dd>
+      <% if (item.image) { %>
+      <dt>Image URL</dt>
+      <dd><img src="<%=item.image%>" alt="<%=item.name%>"></dd>
+      <% } %>
+    </dl>
+    -->
     <div class="control">
-      <h2>Edit selection</h2>
-     <form method="put" action="/selections/<%=item._id%>">
-        
+    <h2>Edit selection</h2>
+      <form method="post" action="/selections/<%=item._id%>">
+        <input type="hidden" name="_method" value="put">
         <input type="hidden" name="item[draft]" value="<%=item.draft%>">
         
         <input type="hidden" name="item[year]" value="<%=item.year%>">
@@ -66,10 +76,28 @@
         <button>Add</button>
       </form>
       
+      <!--
+      <form method="post" action="/candidates/<%=item._id%>">
+        <input type="hidden" name="_method" value="put">
+        The line above tells the server to treat this as a PUT request. --
+        <label>Name: 
+          <input name="item[name]" value="<%=item.name%>" type="text" required>
+        </label>
+        <label>Party: 
+          <select name="item[party]" required>
+            <% related_items.forEach(function(related_item) { %>
+            <option value="<%=related_item._id%>"
+              <% if (related_item._id === item.party) { %>selected<% } %>>
+              <%=related_item.name%>
+            </option>
+            <% }); %>
+          </select>
+        </label>
+        <label>Image URL:
+          <input name="item[image]" value="<%=item.image%>" type="url" size="80"> 
+        </label>
+        <button>Update</button>
+      </form> -->
     </div>
-    
-
-    
-    
   </body>
 </html>

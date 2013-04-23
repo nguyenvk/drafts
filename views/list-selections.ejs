@@ -1,38 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NBA Selections</title>
+    <title>Election Data: Candidates</title>
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <!-- <a href="/"> <h2>All Selections</h1></a> --> <h2>All Selections</h1>
+    <h2>NBA Drafts Database </h2>
     <% if (items.length > 0) { %>
     <ul>
-   
       <% items.forEach(function(item) { %>
-      <li> 
-      <%=item.year%> &nbsp Round <%=item.number%>  &nbsp 
-      <a href="/selections/<%=item._id%>"> <%=item.name%> Pick</a>
-      &nbsp <%=item.player%>
-      </li>
-
+      <li>
+      <%=item.year%> &nbsp Round <%=item.number%>  &nbsp<a href="/selections/<%=item._id%>"><%=item.name%> Pick</a>
+      &nbsp <!-- <%=item.player%> --></li>
       <% }); %>
     </ul>
     <% } else { %>
     <div>No selections found.</div>
     <% } %>
-    <div class="control">
+   <div class="control">
       <h4>Search</h4>
       <form method="get" action="/selections/">
-        <label>Enter keyword: <input name="???????" type="text"></label>
+        <label>Enter keyword: <input name="name" type="text"></label>
         <button>Submit</button>
       </form>
-            
     </div>
     
-        <p>
+            <p>
      &nbsp; <a href="/drafts/"> View all drafts </a>
      </p>
-     
   </body>
 </html>

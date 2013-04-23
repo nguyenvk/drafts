@@ -5,30 +5,33 @@
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <!-- <a href="/"><h1>Draft Info</h1></a> -->
+   <!--
+    <a href="/"><h1>Election Data</h1></a>
     <dl>
-      <dt>Draft Year</dt>
+    <!--
+      <dt>Party name</dt>
+      <dd><%=item.name%></dd>
+      <% if (item.description) { %>
+      <dt>Description</dt>
+      <dd><%=item.description%></dd>
+      <% } %>
+      <dt>Candidates</dt>
+    -->
+    <dt>Draft Year</dt>
       <dd><%=item.id%></dd>
 
-      <dt>Selections</dt>
-      
+    <dt>Selections</dt>
       <dd>
         <% if (related_items.length > 0) { %>
         <ul>
           <% related_items.forEach(function(related_item) { %>
-         
-             
           <li>
-          Round <%=related_item.number%>
-          &nbsp
             <a href="/selections/<%=related_item._id%>">
-              <%=related_item.name%>  Selection
+            <%=related_item.name%> Selection
             </a>
-            
-            &nbsp             
+             &nbsp             
             <%=related_item.team%>
          
-        
           </li>
           <% }); %>
         </ul>
@@ -38,11 +41,27 @@
       </dd>
     </dl>
     
-    Return to:
+        Return to:
     <a href="/drafts/">Drafts </a>  </span>  
     
+    
     <div class="control">
-      <h4>Add next selection</h4>
+      <!--<h2>Add a new candidate</h2>
+      <form id="create-candidate" method="post" action="/candidates/">
+        <input type="hidden" name="item[party]" value="<%=item._id%>">
+        <!-- The line above links the candidate to be created to this party. 
+        <label>Candidate name: 
+          <input name="item[name]" type="text" required
+                   placeholder="Ron Paul">
+        </label>
+        <label>Candidate image URL:
+          <input name="item[image]" type="url" size="80"
+                   placeholder="http://www.ronpaul2012.com/wp-content/themes/ronpaul/images/bg-header.jpg">
+        </label>
+        <button>Add</button>
+      </form> -->
+      
+            <h4>Add next selection</h4>
         <form id="create-candidate" method="post" action="/selections/">
         <!-- <input type="hidden" name="_method" value="put"> -->
         <input type="hidden" name="item[draft]" value="<%=item._id%>">
@@ -69,12 +88,12 @@
         
         <label>Pick Number: 
         <input name="item[name]" type="text" 
-                    placeholder="1st pick">
+                    placeholder="1st">
         </label>
         
         <label>Round Number: 
         <input name="item[number]" type="text" 
-                    placeholder="Round 1">
+                    placeholder="1">
         </label>
         
         <label>Team Selecting: 
@@ -89,7 +108,7 @@
         
         <label>Player Position 
         <input name="item[position]" type="text" 
-                   placeholder="PG">
+                   placeholder="F">
         </label>
         <button>Add</button>
       </form>
