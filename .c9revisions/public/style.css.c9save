@@ -79,3 +79,4 @@
 {"ts":1366900145520,"patch":[[{"diffs":[[0,"   margin: 10px "],[-1,"1"],[0,"0px 10px;\n      "]],"start1":277,"start2":277,"length1":33,"length2":32}]],"length":1303,"saved":false}
 {"ts":1366900148039,"patch":[[{"diffs":[[0,"n: 10px 0px "],[-1,"1"],[0,"0px;\n      b"]],"start1":285,"start2":285,"length1":25,"length2":24}]],"length":1302,"saved":false}
 {"ts":1366900155515,"patch":[[{"diffs":[[0,"margin: "],[-1,"1"],[0,"0px "],[1,"1"],[0,"0px 0px;"]],"start1":280,"start2":280,"length1":21,"length2":21}]],"length":1302,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1367791160175,"patch":[[{"diffs":[[0,"#create"],[1,", #delete"],[0," {\n  bor"]],"start1":0,"start2":0,"length1":15,"length2":24},{"diffs":[[0,"0px;\n}\n\n"],[1,"\n\n"],[0,"#search "]],"start1":128,"start2":128,"length1":16,"length2":18}]],"length":1313,"saved":false}

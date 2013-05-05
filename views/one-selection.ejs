@@ -71,6 +71,18 @@
           </form>
     </div>
     
+        <div id="delete">
+          <form class="selection_delete" method="post" action="/selections/<%=item._id%>">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden" name="item[id]" value="<%=item.id%>">            
+            <input type="hidden" name="item[rev]" value="<%=item._rev%>">  
+            <input type="hidden" name="reply" value="/drafts/"/>
+                       
+            <button>Delete</button>
+          </form>
+    </div>
+    
+    
     <div class="nav">
         <p>
              Back to

@@ -257,6 +257,30 @@ app.get('/selections/:id',       // TODO: change to suit your URI design.
   }
 );
 
+app.delete('/selections/:id', // TODO: change to suit your URI design.
+  function(req, res) {
+  
+    // Get the item ID from the URI.
+    var item_id = req.params.id;
+
+    // Get the item info that was PUT from the input form.
+    // See the form in `views/one-candidate.ejs`.
+    var item = req.body.item;
+
+    item.type = 'selection'; // TODO: change to the type of item you want
+
+    // Save the new item to the database, specifying the ID.
+    db.remove(item_id, item, function(err) {
+
+      // If there was a database error, return an error status.
+      if (err) { res.send(err, 500); } 
+      
+      // Otherwise, redirect back to the URI from which the form was submitted.
+      else { res.redirect('back' ); }
+    });
+  }
+);
+
 
 // Handle GET of the "index" resource.
 app.get('/', function(req, res) { res.render('index'); });
