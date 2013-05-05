@@ -1,68 +1,54 @@
-# An example web information service
+NBADrafts
+=========
+This service provides information on the NBA draft starting from its inception in 1947. NBA drafts occur once every year, and consist of multiple rounds where players are drafted by professional basketball teams. 
+Each draft provides details on the number of selections in that round, and each selection provides details about the player picked. 
+Data is organized by drafts and selections. Users will be able to search through drafts based on years or selections.
 
-This is an example application intended to be used as a starting point for the final project in [INLS 490-186 Web Information Organization](http://aeshin.org/teaching/inls-490-186/2013/sp/).
+ID Attribute Values
+-------------------
+1. drafts - applied to a DIV tag, includes a list of all of the drafts present in the representation. May contain only one draft. 
+2. selections - applied to a DIV tag, includes a list of all of the draft selections present in the presentation. May contain only one selection. 
+3. search - applied to a DIV tag, includes a form for query links. May contain only one form.
+4. create - applied to a DIV tag, includes a form for update links. May contain only one form. 
+    
+Class Attribute Values 
+----------------------
+1. all - applied to a UL,OL tag. A list of representations. When this tag is a descendant of a  DIV.id="drafts" it may have  one or more LI.class="year" descendant elements.  When this tag is a descendant of a  DID.id="selections" it MUST have one or more SPAN.class="year" descendant elements and it may have one or more LI.class="selection" elements. 
+2. description - applied to a SPAN tag. Contains a summary description of a selection. 
+3. details - applied to a SPAN tag. Contains a brief description of a selection.
+4. draft-add - applied to a FORM tag. A template to add the next draft. The element MUST be set to FORM.method="post" and SHOULD contain the following descendant elements: INPUT[text].name="password".
+5. draft-search - applied to a FORM tag. A template to search draft years and selections. The element MUST be set to FORM.method="get" and SHOULD contain the descendant element INPUT[text].name="year" or INPUT[text].name="selection".
+6. multiple - applied to a UL tag. A list representation. When this tag is a descendant of a DIV.id="drafts" it may have one or more LI.class="year" descendant elements.
+7. selection - applied to a LI, SPAN tag. Contains the selection of a draft. When this element is a descendant of DIV.id="selections" then it MUST contain the descendent element SPAN.class="description".
+8. selections - applied to  a DIV tag, includes a list of all of the draft selections based on a query. May contain only one selection or all selections from a year.
+9. selection-add - applied to a FORM tag. A template to add a draft selection. The element MUST be set to FORM.method="post" and SHOULD contain the descendant elements: INPUT[text].name="selection" and INPUT[text].name="details" and INPUT[text].name="description" and INPUT[text].name="password".
+10. selection-remove - applied to a FORM tag. A template to remove a draft selection. The element MUST be set to FORM.method="post" and SHOULD contain the descendant elements: INPUT[text].name="selection" and INPUT[text].name="password".
+11. selection-update - applied to a FORM tag. A template to update a draft selection. The element MUST be set to FORM.method="post" and SHOULD contain the descendant elements: INPUT[text].name="selection" and INPUT[text].name="details" and INPUT[text].name="description" and INPUT[text].name="password".
+12. single - applied to a UL tag. A list representation. When this tag is a descendant of DIV.id="drafts" it MUST have one SPAN.class="year" descendant element and may	have one DIV.class="selections" descendant element. When this tag is a decendant of DIV.id="selections" it MUST contain a LI.class="selection" element. 
+13. year - applied to a LI, SPAN tag. Contains the year of a draft. When this element is a descendant of Div.id="drafts" then it MUST contain the descendent element A.rel="draft". 
 
-## Forking this repository
+selection_search
+round
+pick
+nav
+team
+name 
+number
+player
+position
+instructions
+	
+Name Attibute Values
+--------------------
+1. description - applied to an INPUT[text] element. The team name, player name, position, etc of a selection. 
+2. details - applied to an INPUT[text] element. The team name and player name of a selection.
+3. password - applied to an INPUT[text] element. The password to allow for creation, update and removal of selections.
+4. selection - applied to an INPUT[text] element. The selection/position of the draft. The selection value to use when creating a draft position using FORM.class="selection-add". The selection value to use when removing a draft position using FORM.class="selection-remove".The selection value to use when updating a draft position using FORM.class="selection-update". The search value to use when searching draft selection using FORM.class="draft-search".
+5. year-end - applied to an INPUT[text] element. The year of the last desired draft. A search value to use when searching draft values using FORM.class="draft-search".
+6. year-start - applied to an INPUT[text] element. The year of the first desired draft. A search value to use when searching draft values using FORM.class="draft-search".
 
-You will want to start by [forking](http://help.github.com/fork-a-repo/) this repository so you have your own copy to modify. If you decide to work in a group, I will put a copy of the code in your shared repository. (While it's possible to collaborate with your group by pushing and pulling commits across your two or three separate forks, doing so requires somewhat advanced knowledge of Git and thus isn't expected for this assignment.)
-
-If you're working alone, please **rename your GitHub repository** to something more suitable for your service. You can do this by clicking on the `Settings` button in the top right of your repository's page on GitHub. A one-word, no-spaces name is best. (If you're working in a group the repository will be named after your group).
-
-## Cloning your project in Cloud9
-
-If you're working alone, and you've successfully forked the repository to your own GitHub account, then cloning your project into Cloud9 is simple. Just sign in to [Cloud9](http://c9.io) using your GitHub account (click the little green [Octocat](http://octodex.github.com/) icon). Your dashboard should open, and you will see a list of `PROJECTS ON GITHUB` on the left. Select your project and click the green `CLONE TO EDIT` button.
-
-If you're in a group, your GitHub repository won't show up in the list of GitHub projects, so you need to click the plus-sign button next to `MY PROJECTS` on the left, and select `Clone From URL`. Then (in another browser tab) go to the homepage of your team's repository, and copy the URL next to where it says `Read+Write access` (it should look something like `git@github.com:sils-webinfo/SteampunkUnicorn.git` if `SteampunkUnicorn` were the name of your group). Go back to Cloud9, paste this URL in the `Source URL` field, and click the green `CHECKOUT` button. Cloud9 should start cloning your project. (Sometimes it flakes out; if it does just try again.)
-
-## Modifying the example code
-
-There are only three places where the example service needs to be modified to implement your own service:
-
-1. [`app.js`](https://github.com/sils-webinfo/election/blob/master/app.js) contains all the logic for handling HTTP requests. You may just need to modify the examples in this file, or you may need to add additional request handlers by copying, pasting, and modifying these examples. The only parts you should *need* to change are marked with with `TODO` comments. In particular, make sure you edit the value of the `USER_OR_GROUP_NAME` variable at the top of this file to match your GitHub user name (if you're working alone) or your group name:
-
-    ```javascript
-    var USER_OR_GROUP_NAME = ''; // TODO: Insert GitHub username or group name.
-    ```
-
-1. The [`views`](https://github.com/sils-webinfo/election/tree/master/views) directory contains all the EJS ([Embedded JavaScript](http://embeddedjs.com/)) templates for the service. You will need to create new templates suitable for your application, using these examples as models. The templates should include the metadata describing your application flow and data.
-
-1. Finally, you need to edit [`package.json`](https://github.com/sils-webinfo/election/blob/master/package.json) and change the value of the `name` property to whatever you named your project.
-
-## Testing your code
-
-To run your project, simply open `app.js` and click the `Run` button at the top of the screen (it looks like a green play button). You should see a message like this in the console:
-
-```
-Running Node Process
-Your code is running at 'http://election.rybesh.c9.io'.
-Important: use 'process.env.PORT' as the port and 'process.env.IP' as the host in your scripts!
-```
-
-Clicking on the URL (in my case, `http://election.rybesh.c9.io` since `rybesh` is my GitHub/Cloud9 username) should open a new browser tab or window to your web app.
-
-If you get an error message, it's probably because you forgot to set `USER_OR_GROUP_NAME` (see above) or due to a syntax error somewhere in `app.js` (look for red `X`s along the left margin of the editor when you open `app.js`). 
-
-## Troubleshooting
-
-Running your app in Cloud9 and looking at the console output should help you troubleshoot basic problems. You can add logging messages to `app.js` like this:
-
-```javascript
-console.log("Calculating grobble vectors…");
-```
-
-Then you when you run your app in Cloud9, you should see the text `Calculating grobble vectors…` in your console when that code is executed. Adding lots of console logging messages like this can help you understand when various parts of the program are running. You can also print out variables to see what their values are:
-
-```javascript
-// Get the item ID from the URI.
-var item_id = req.params.id;
-console.log("the item id is: ", item_id);
-```
-
-You may also want to verify that data is being created and updated in your database correctly. You can do this by going to [the admin tools for our shared database server](http://sils-webinfo.iriscouch.com/_utils/). Find your database in the list (it is named whatever you set `USER_OR_GROUP_NAME` to in `app.js`), and click it. You should see a list of all the "documents" (objects) in your database. Clicking on a document ID will show its details (properties and values).
-
-## Deploying to Heroku
-
-When you've got your app running how you want it, and you're ready to turn things in, it's time to deploy to [Heroku](http://www.heroku.com/). Heroku is a free (for us) cloud hosting platform. It will enable your app to run longer than it can in the Cloud9 debugger.
-
-First, [sign up](https://api.heroku.com/signup) for Heroku. Then, follow [these instructions](https://docs.c9.io/deploying_to_heroku.html) to deploy your app. Don't worry about the `package.json` and `Procfile` files: those already exist, and you shouldn't have to change them except to change the project name in `package.json` (see above).
-
+	
+Rel Attribute Values
+--------------------
+1. draft - applied to an A tag, a reference to a draft year. 
+2. selection - applied to an A tag, a reference to a draft selection.

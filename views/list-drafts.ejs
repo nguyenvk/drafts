@@ -1,74 +1,70 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Election Data: Parties</title>
+    <title>All NBA Drafts</title>
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-  <h2>NBA Drafts Database </h2>
-    <!--<a href="/"><h1>Election Data</h1></a> -->
-    <% if (items.length > 0) { %>
-    <ul>
-      <% items.forEach(function(item) { %>
-      <li><a href="/drafts/<%=item._id%>"><%=item._id%></a></li>
-      <% }); %>
-    </ul>
-    <% } else { %>
-    <div>No parties have been added.</div>
-    <% } %>
-    <div class="control">
-      <h4>Add Draft</h4>
+  
+    <div id="drafts" >
+      <h2>NBA Drafts Database </h2>
+        <% if (items.length > 0) { %>
+        <ul class="all">
+          <% items.forEach(function(item) { %>
+          
+            <li class="year" itemscope itemtype="http://schema.org/SportsEvent/Draft">
+                <a itemprop="url" href="/drafts/<%=item._id%>" rel="draft_year"> <span itemprop="name"><%=item._id%> </span></a>
+            </li>
+          <% }); %>
+        </ul>
+        <% } else { %>
+        <div>No parties have been added.</div>
+        <% } %>
+    </div>
+    
+    <div class="instructions">
+        <p>
+            <br/>
+            <span><strong>Add Draft</strong></span> 
+        </p>
+    </div>
+    
+    <div id="create">
       <script>
       function onFormSubmit(form) {
         form.action = form.action + form.elements['item[id]'].value;
         console.log(form.action);
         return true;
       } 
-      </script>
-     <!-- <form method="post" action="/drafts/"
-            onsubmit="return onFormSubmit(this);">
-        The line above dynamically sets the PUT destination when the 
-        form is submitted. --------------------------------------------
+      </script>   
+        <form class="draft_add" method="post" action="/drafts/" onsubmit="return onFormSubmit(this);">
         <input type="hidden" name="_method" value="put">
-         The line above tells the server to treat this as a PUT request. --
-        <label>Party ID<br>
-          (lowercase letters only, no spaces):
-          <input name="item[id]" type="text" pattern="[a-z]+" required
-                 placeholder="green">
-        </label>
-        <label>Party name: 
-          <input name="item[name]" type="text" required
-                 placeholder="The Green Party">
-        </label>
-        <label>Party description:
-          <textarea name="item[description]" cols="80" rows="10" 
-                    placeholder="The Green Party of the United States of America emphasizes environmentalism, non-hierarchical participatory democracy, social justice, respect for diversity, peace and nonviolence."
-          ></textarea>
-        </label>
-        <button>Add or update</button>
-      </form> --> 
-      
-        <form method="post" action="/drafts/" onsubmit="return onFormSubmit(this);">
-        <input type="hidden" name="_method" value="put">
-        <label>Year (YYYY):
-          <input name="item[id]" type="text" pattern="[0-9]+" required
-                 placeholder="2013">
-        </label>
         
 
-        <label> 
-          <input name="item[name]" type="hidden" 
-                 value="NBA_Draft">
+        <label>
+            Year: <input name="item[id]" type="text" pattern="[0-9]+" required placeholder="2013">
         </label>
+            <span class="info">
+                Enter the <strong>year </strong> that the NBA draft was held, in YYYY format.
+            </span>      
+        
+        
+        <label> 
+          <input name="item[name]" type="hidden" value="NBA_Draft">
+        </label>
+        
         <button>Submit</button>
       </form>
       
+    </div>    
+     
+    <div class="nav">
+        <p>
+            View all <a href="/selections/" rel="all_selections"> selections</a> <br/>
+            
+            Back to <a href="/" rel="home">main</a> 
+        </p>
     </div>
     
-                  <p>
-     &nbsp; <a href="/selections/"> View all selections </a>
-     </p>
-     
-     
   </body>
 </html>

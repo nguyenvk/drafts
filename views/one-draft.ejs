@@ -1,117 +1,111 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%=item.name%></title>
+    <title><%=item._id%> NBA Draft</title>
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-   <!--
-    <a href="/"><h1>Election Data</h1></a>
-    <dl>
-    <!--
-      <dt>Party name</dt>
-      <dd><%=item.name%></dd>
-      <% if (item.description) { %>
-      <dt>Description</dt>
-      <dd><%=item.description%></dd>
-      <% } %>
-      <dt>Candidates</dt>
-    -->
-    <dt>Draft Year</dt>
-      <dd><%=item.id%></dd>
-
-    <dt>Selections</dt>
-      <dd>
-        <% if (related_items.length > 0) { %>
-        <ul>
-          <% related_items.forEach(function(related_item) { %>
-          <li>
-            <a href="/selections/<%=related_item._id%>">
-            <%=related_item.name%> Selection
-            </a>
-             &nbsp             
-            <%=related_item.team%>
-         
-          </li>
-          <% }); %>
-        </ul>
-        <% } else { %>
-        No selections have been added.
-        <% } %>
-      </dd>
-    </dl>
     
-        Return to:
-    <a href="/drafts/">Drafts </a>  </span>  
+    <div id="drafts" itemscope itemtype="http://schema.org/SportsEvent">
+        <dl>
+            <dt class="year" itemprop="name">Draft Year</dt>
+                <dd itemprop="endDate startDate"><%=item.id%></dd>
+            
+            <div id="selections">
+                <dt>Selections</dt>
+                  <dd>
+                    <% if (related_items.length > 0) { %>
+                    <ul class="all">
+                      <% related_items.forEach(function(related_item) { %>
+                      
+                      <li class="selection" itemprop="attendee" itemscope itemtype="http://schema.org/Person/Athlete/DraftSelection">
+                        <a href="/selections/<%=related_item._id%>" rel="selection_info" itemprop="url"> <span itemprop="name"><%=related_item.name%> Selection </span></a>
+            
+                        <span class="team" itemprop="draftTeam" itemscope itemtype="http://schema.org/Organization/SportsTeam"> <span itemprop="name"><%=related_item.team%> </span> </span>
+                     
+                      </li>
+                      <% }); %>
+                    </ul>
+                    <% } else { %>
+                    No selections have been added.
+                    <% } %>
+                  </dd>
+            </div>
+        </dl>
+    </div>
     
+    <div class="nav">
+        <p>
+            Return to:
+            <a href="/drafts/" rel="all_drafts" >Drafts </a>  </span>  
+        </p>
+    </div>   
     
-    <div class="control">
-      <!--<h2>Add a new candidate</h2>
-      <form id="create-candidate" method="post" action="/candidates/">
-        <input type="hidden" name="item[party]" value="<%=item._id%>">
-        <!-- The line above links the candidate to be created to this party. 
-        <label>Candidate name: 
-          <input name="item[name]" type="text" required
-                   placeholder="Ron Paul">
-        </label>
-        <label>Candidate image URL:
-          <input name="item[image]" type="url" size="80"
-                   placeholder="http://www.ronpaul2012.com/wp-content/themes/ronpaul/images/bg-header.jpg">
-        </label>
-        <button>Add</button>
-      </form> -->
-      
-            <h4>Add next selection</h4>
-        <form id="create-candidate" method="post" action="/selections/">
-        <!-- <input type="hidden" name="_method" value="put"> -->
+    <div class="instructions">
+        <p>
+            <br/>
+            <span><strong>Add next selection</strong></span> 
+        </p>
+    </div>
+    
+    <div id="create">
+        <form class="selection_add" method="post" action="/selections/">
         <input type="hidden" name="item[draft]" value="<%=item._id%>">
-        <!-- The line above links the candidate to be created to this party. -->
-        
+
         <input type="hidden" name="item[year]" value="<%=item._id%>">
-        
-         <!-- automatic _id value --> 
-        <!--
-        <label>Pick ID: 
-        <input name="item[id]" type="text" 
-                    placeholder="<%=item._id%>draft1pick">
-        </label>
-         -->
-        
-        <!-- create _id value --> 
-     
+         
         <label>Unique Pick ID: 
-        <input name="item[_id]" type="text" 
-                    placeholder="<%=item._id%>draft1pick">
+         <input name="item[_id]" type="text" placeholder="<%=item._id%>draft01pick">
         </label>
-        
-        
-        
+            <span class="info">
+                Enter a <strong>Unique Pick ID</strong> consisting of the year of the draft and the overall selection number for the pick, in YYYYdraft##pick format.
+            </span>     
+            
         <label>Pick Number: 
-        <input name="item[name]" type="text" 
-                    placeholder="1st">
+            <input name="item[name]" type="text" placeholder="1st">
         </label>
+            <span class="info">
+                Enter the <strong>Pick Number</strong> for the selection in relation to the round, in cardinal number format.
+            </span> 
         
         <label>Round Number: 
-        <input name="item[number]" type="text" 
-                    placeholder="1">
+             <input name="item[number]" type="text"placeholder="1">
         </label>
-        
+            <span class="info">
+                Enter the <strong>Round Number</strong> that the selection was made, in ## format.
+            </span> 
+            
         <label>Team Selecting: 
-        <input name="item[team]" type="text" 
-                   placeholder="Denver Nuggets">
+            <input name="item[team]" type="text" placeholder="Denver Nuggets">
         </label>
-        
+            <span class="info">
+                Enter the <strong>Team Selecting</strong> the the player, with complete team name.
+            </span> 
+            
         <label>Player Selected: 
-        <input name="item[player]" type="text" 
-                   placeholder="Michael Jordan">
+            <input name="item[player]" type="text" placeholder="Michael Jordan">
         </label>
+            <span class="info">
+                Enter the <strong>Player Selected</strong> with the given pick, with first and last name.
+            </span> 
         
         <label>Player Position 
-        <input name="item[position]" type="text" 
-                   placeholder="F">
+             <input name="item[position]" type="text" placeholder="F">
         </label>
+            <span class="info">
+                Enter the <strong>Player Position</strong> for the selection, with one or more of G/F/C.
+            </span> 
+            
         <button>Add</button>
       </form>
     </div>
+    
+    <div class="nav">
+        <p>
+            Back to
+            <a href="/" rel="home">main </a>  </span> 
+        </p>
+    </div>
+    
   </body>
 </html>

@@ -1,103 +1,82 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Election Data: <%=item.name%></title>
+    <title>Selection data: <%=item.year%> <%=item.name%> pick</title>
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-      <em><strong><%=item.player%></strong></em>
-    <dl>
-      <dt>Selection:</dt>
-      <dd><%=item.name%></dd>
-      <% if (item.description) { %>
-      <dt>Description</dt>
-      <dd><%=item.description%></dd>
-      <% } %>
-      <dt>Round:</dt>
-      <dd>Round <%=item.number%></dd>
-      <dt>Team:</dt>
-      <dd><%=item.team%></dd> 
-      <!--
-      <dt>Player:</dt>
-      <dd><%=item.player%></dd>
-      -->
-      <dt>Position:</dt>
-      <dd><%=item.position%></dd>
-    
-    <span>
-    Return to:
-    <a href="/drafts/<%=item.year%>"><%=item.year%></a> NBA Draft.  
-    
-    </span> 
-  <!--
-    <a href="/"><h1>Election Data</h1></a>
-    <dl>
-      <dt>Name</dt>
-      <dd><%=item.name%></dd>
-      <dt>Party</dt>
-      <dd><a href="/parties/<%=item.party%>"><%=item.party%></a></dd>
-      <% if (item.image) { %>
-      <dt>Image URL</dt>
-      <dd><img src="<%=item.image%>" alt="<%=item.name%>"></dd>
-      <% } %>
-    </dl>
-    -->
-    <div class="control">
-    <h2>Edit selection</h2>
-      <form method="post" action="/selections/<%=item._id%>">
-        <input type="hidden" name="_method" value="put">
-        <input type="hidden" name="item[draft]" value="<%=item.draft%>">
+  
+    <div id="selections" itemscope itemtype="http://schema.org/Person/Athlete/DraftSelection">
+     <dl class="single">
+         <dt>
+            <dd class="player" itemprop="name"><em><strong><%=item.player%></strong></em> </dd>
+          </dt>
         
-        <input type="hidden" name="item[year]" value="<%=item.year%>">
-
-        
-        <input name="item[name]" type="hidden" 
-                    value="<%=item.name%>">
-        
-        <input name="item[number]" type="hidden" 
-                    value="<%=item.number%>">
-
-        
-        <label>Team Selecting: 
-        <input name="item[team]" type="text" 
-                   value="<%=item.team%>">
-        </label>
-
-        
-        <label>Player Selected: 
-        <input name="item[player]" type="text" 
-                   value="<%=item.player%>">
-        </label>
-        
-        <label>Player Position 
-        <input name="item[position]" type="text" 
-                   value="<%=item.position%>">
-        </label>
-        <button>Add</button>
-      </form>
-      
-      <!--
-      <form method="post" action="/candidates/<%=item._id%>">
-        <input type="hidden" name="_method" value="put">
-        The line above tells the server to treat this as a PUT request. --
-        <label>Name: 
-          <input name="item[name]" value="<%=item.name%>" type="text" required>
-        </label>
-        <label>Party: 
-          <select name="item[party]" required>
-            <% related_items.forEach(function(related_item) { %>
-            <option value="<%=related_item._id%>"
-              <% if (related_item._id === item.party) { %>selected<% } %>>
-              <%=related_item.name%>
-            </option>
-            <% }); %>
-          </select>
-        </label>
-        <label>Image URL:
-          <input name="item[image]" value="<%=item.image%>" type="url" size="80"> 
-        </label>
-        <button>Update</button>
-      </form> -->
+          <dt class="pick" >Selection:</dt>
+            <dd itemprop="pickNumber"><%=item.name%></dd>
+              <% if (item.description) { %>
+              <dt>Description</dt>
+              <dd><%=item.description%></dd>
+              <% } %>
+          <dt class="round">Round:</dt>
+            <dd itemprop="draftRound">Round <%=item.number%></dd>
+          <span itemprop="draftTeam" itemscope itemtype="http://schema.org/Organization/SportsTeam">
+          <dt class="team">Team:</dt>
+            <dd itemprop="name"><%=item.team%></dd> 
+          </span>    
+         <dt class="position">Position:</dt>
+             <dd itemprop="position"><%=item.position%></dd>
+        </dl>
     </div>
+    
+    <div class="nav">
+        <p>
+            Return to:
+            <a href="/drafts/<%=item.year%>" rel="year_of_selection"><%=item.year%></a> NBA Draft.  
+        </p>
+    </div> 
+
+    <div class="instructions">
+        <p>
+            <br/>
+            <span><strong>Edit selection</strong></span> 
+        </p>
+    </div>
+    
+    <div id="create">
+          <form class="selection_update" method="post" action="/selections/<%=item._id%>">
+            <input type="hidden" name="_method" value="put">
+            
+            <input type="hidden" name="item[draft]" value="<%=item.draft%>">     
+            
+            <input type="hidden" name="item[year]" value="<%=item.year%>">    
+            
+            <input name="item[name]" type="hidden" value="<%=item.name%>">
+            
+            <input name="item[number]" type="hidden" value="<%=item.number%>">
+                
+            <label>Team Selecting: 
+                <input name="item[team]" type="text" value="<%=item.team%>">
+            </label>
+    
+            <label>Player Selected: 
+                <input name="item[player]" type="text" value="<%=item.player%>">
+            </label>
+            
+            <label>Player Position: 
+                 <input name="item[position]" type="text" value="<%=item.position%>">
+            </label>
+            
+            <button>Update</button>
+          </form>
+    </div>
+    
+    <div class="nav">
+        <p>
+             Back to
+                <a href="/" rel="home">main </a>  </span> 
+        </p>
+    </div>
+    
   </body>
 </html>

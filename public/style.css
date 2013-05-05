@@ -1,23 +1,56 @@
-.control {
+#create {
   border: 0px solid gray;
-  margin: 30px 10px 10px;
+  margin: 10px 10px 10px;
   padding: 5px;
   background-color:#e6e6e6;
-    width: 180px;
+    width: 280px;
 }
+
+#search {
+  border: 0px solid gray;
+  margin: 10px 10px 10px;
+  padding: 5px;
+  background-color:#e6e6e6;
+    width: 380px;
+}
+
+.instructions{
+    
+      margin: 0px 10px 0px;
+      border-top:thick double #000000;
+}
+
+.nav{
+    
+      margin: 10px 10px 10px;
+}
+
+
+.info{
+    font-size: 11px;
+    
+}
+
 .control h2 {
   margin: 0px 0;
 
 }
-label, input, textarea, select, button {
+label, textarea, select{
   display: block;  
 }
+
+input{
+    display: inline;
+    
+}
+
 label {
   padding-top: 10px; 
 }
 button {
-  margin-top: 20px;
+  margin-top: 10px;
   font-family:"Cambria";
+  display: block;
 } 
 dt {
   font-weight: bold;
@@ -38,3 +71,23 @@ body {
     background-position:right top;
 
 }
+
+a { 
+background: transparent;
+outline: none;
+text-decoration: none;
+color:  #88ACE0;
+}
+/*
+a:link {color:#88ACE0;}       unvisited link 
+a:visited {color:grey;}   visited link 
+a:hover {color:#0E1852;}   mouse over link 
+a:active {color:#0E1852;}   selected link 
+*/
+
+label {
+    font-style: italic;
+    
+}
+
+
