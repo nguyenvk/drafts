@@ -144,6 +144,8 @@ app.get('/selections/',          // TODO: change to suit your URI design.
 
     // Get items of the specified type that match the query.
     db.getSome(item_type, req.query, function(err, items) {
+        
+        console.log(req.query);
 
       // If there was a database error, return an error status.
       if (err) { res.send(err, 500); } 
@@ -158,6 +160,7 @@ app.get('/selections/',          // TODO: change to suit your URI design.
     });
   }
 );
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // An example of handling GET of a "single" resource. //////////////////////////

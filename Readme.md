@@ -3,7 +3,7 @@ NBADrafts
 This service provides information on the NBA draft. 
 NBA drafts occur once every year, and consist of multiple rounds where players are drafted by professional basketball teams. 
 Each draft provides details on the number of selections in that round, and each selection provides details about the player picked. 
-Data is organized by drafts and selections. Users will be able to search through drafts based on years or selections.
+Data is organized by drafts and selections. Users will be able to search through drafts based on years and selections.
 For the purposes of this assignment, in order to reduce the number of data to be entered only a small proportion of all drafts and selection were included; the functionality of the database is still maintained however. 
 
 ID Attribute Values
@@ -49,8 +49,6 @@ Name Attibute Values
 1. number - applied to an INPUT[text] element. The round of a selection.
 1. selection - applied to an INPUT[text] element. The selection/position of the draft. The selection value to use when creating a draft position using FORM.class="selection-add". The selection value to use when removing a draft position using FORM.class="selection-remove".The selection value to use when updating a draft position using FORM.class="selection-update". The search value to use when searching draft selection using FORM.class="draft-search".
 1. team - applied to an INPUT[text] element. The team of a selection.
-1. year-end - applied to an INPUT[text] element. The year of the last desired draft. A search value to use when searching draft values using FORM.class="draft-search".
-1. year-start - applied to an INPUT[text] element. The year of the first desired draft. A search value to use when searching draft values using FORM.class="draft-search".
 
 	
 Rel Attribute Values
@@ -61,3 +59,14 @@ Rel Attribute Values
 1. home - applied to an A tag, a reference to the main database navigation page. 
 1. selection_info - applied to an A tag, a reference to a single selection.
 
+Extension of Schema
+--------------------
+Since the types and properties on Schema.org were in some cases too general, extensions were used to better capture the data in the database. 
+
+1. Draft - a type extension of http://schema.org/SportsEvent, a type of event in which professional players are selected to teams.
+1. DraftSelection - a type extension of http://schema.org/Person/Athlete, a type of athlete respective of their role as a draft selection.
+1. draftYear - a property extension of http://schema.org/Person/Athlete/DraftSelection, the year in which the draft selection was selected.
+1. draftRound -  a property extension of http://schema.org/Person/Athlete/DraftSelection, the round in which the draft selection was selected.
+1. pickNumber - a property extension of http://schema.org/Person/Athlete/DraftSelection, the particular order in which the draft selection was selected.
+1. draftTeam - a property extension of http://schema.org/Organization/SportsTeam, the team which made the draft selection. 
+1. position - a property extension of http://schema.org/Organization/SportsTeam, the position for which the draft selection plays. 

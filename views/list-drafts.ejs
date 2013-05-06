@@ -66,6 +66,31 @@
       </form>
       
     </div>    
+    
+<!-- Attempt to implement a ranged year search function        
+       <div id="search">
+
+      <form class="draft_search" method="get" action="/selections/">
+        <label>Enter Draft years of interest:
+        <% if (items.length > 0) { %>
+         <% items.forEach(function(item) { %>
+            <input type="checkbox" name="year" value="<%=item.id%>"><%=item.id%> 
+         <% }); %>
+
+        <% } else { %>
+        <% } %>    
+        
+        
+        </label>
+        <input name="name" type="text">
+        
+        <button>Submit</button>
+      </form>
+    </div>
+-->
+     
+     
+     
      
     <div class="nav">
         <p>
