@@ -1,7 +1,7 @@
 {
   "name": "draft",
   "version": "0.0.1",
-  "engines": {
+  "engines": { 
     "node": "0.6.x",
     "npm":  "1.0.x"
   }
