@@ -64,14 +64,19 @@
         
         <button>Submit</button>
       </form>
-      
-    </div>    
-    
-<!-- Attempt to implement a ranged year search function        
+      <br />
+      </div> 
+     
+      <div class="indent">
+       <br/>
+            <span><strong>Search Drafts</strong></span> 
+        <label>
+             Check the following boxes to access selections for particular Draft years. 
+        </label>
+    </div>
        <div id="search">
 
       <form class="draft_search" method="get" action="/selections/">
-        <label>Enter Draft years of interest:
         <% if (items.length > 0) { %>
          <% items.forEach(function(item) { %>
             <input type="checkbox" name="year" value="<%=item.id%>"><%=item.id%> 
@@ -80,14 +85,12 @@
         <% } else { %>
         <% } %>    
         
-        
-        </label>
-        <input name="name" type="text">
-        
+    
+    
         <button>Submit</button>
       </form>
     </div>
--->
+
      
      
      
