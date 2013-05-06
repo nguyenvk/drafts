@@ -279,7 +279,7 @@ app.delete('/selections/:id', // TODO: change to suit your URI design.
       if (err) { res.send(err, 500); } 
       
       // Otherwise, redirect back to the URI from which the form was submitted.
-      else { res.redirect('back' ); }
+      else { res.redirect('/drafts/' ); }
     });
   }
 );

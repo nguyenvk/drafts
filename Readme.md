@@ -6,6 +6,27 @@ Each draft provides details on the number of selections in that round, and each 
 Data is organized by drafts and selections. Users will be able to search through drafts based on years and selections.
 For the purposes of this assignment, in order to reduce the number of data to be entered only a small proportion of all drafts and selection were included; the functionality of the database is still maintained however. 
 
+Schema Types and Properties from Schema.org
+-------------------------------------------
+1. attendee - a property from Event. A person or organization attending the event.
+1. endDate - a property from Event. The end date of the event (in ISO 8601 date format).
+1. name - a property from Thing. The name of the item.
+1. SportsEvent - http://schema.org/SportsEvent - Event type sports event.
+1. SportsTeam - http://schema.org/Organization/SportsTeam - Organization type sports team.
+1. startDate - a property from Event. The start date of the event (in ISO 8601 date format).
+
+Extension of Schema
+--------------------
+Since the types and properties on Schema.org were in some cases too general, extensions were used to better capture the data in the database. 
+
+1. Draft - a type extension of http://schema.org/SportsEvent, a type of event in which professional players are selected to teams.
+1. DraftSelection - a type extension of http://schema.org/Person/Athlete, a type of athlete respective of their role as a draft selection.
+1. draftYear - a property extension of http://schema.org/Person/Athlete/DraftSelection, the year in which the draft selection was selected.
+1. draftRound -  a property extension of http://schema.org/Person/Athlete/DraftSelection, the round in which the draft selection was selected.
+1. pickNumber - a property extension of http://schema.org/Person/Athlete/DraftSelection, the particular order in which the draft selection was selected.
+1. draftTeam - a property extension of http://schema.org/Organization/SportsTeam, the team which made the draft selection. 
+1. position - a property extension of http://schema.org/Organization/SportsTeam, the position for which the draft selection plays. 
+
 ID Attribute Values
 -------------------
 1. create - applied to a DIV tag, includes a form for update links. May contain only one form.
@@ -14,12 +35,13 @@ ID Attribute Values
 1. selections - applied to a DIV tag, includes a list of all of the draft selections present in the presentation. May contain only one selection. 
 1. search - applied to a DIV tag, includes a form for query links. May contain only one form.
     
+
 Class Attribute Values 
 ----------------------
 1. all - applied to a UL,OL tag. A list of representations. When this tag is a descendant of a  DIV.id="drafts" it may have  one or more LI.class="year" descendant elements.  When this tag is a descendant of a  DID.id="selections" it MUST have one or more SPAN.class="year" descendant elements and it may have one or more LI.class="selection" elements. 
 1. description - applied to a SPAN tag. Contains a summary description of a selection. 
 1. draft-add - applied to a FORM tag. A template to add the next draft. The element MUST be set to FORM.method="post" and SHOULD contain the following descendant elements: INPUT[text].name="pass".
-1. info - applied to a SPAN tag. Contains details on the data to be included in a form. 
+1. info - applied to a SPAN tag. Contains details on the data being provided. 
 1. instructions - applied to a DIV tag, includes information on how to use a form. 
 1. multiple - applied to a UL tag. A list representation. When this tag is a descendant of a DIV.id="drafts" it may have one or more LI.class="year" descendant elements.
 1. nav - applied to a DIV tag, includes links to different representations. 
@@ -37,6 +59,7 @@ Class Attribute Values
 1. team - applied to a SPAN, DT tag. Contains the team for which a selection was chosen.
 1. year - applied to a LI, SPAN tag. Contains the year of a draft. When this element is a descendant of Div.id="drafts" then it MUST contain the descendent element A.rel="draft". 
     
+
 Name Attibute Values
 --------------------
 1. description - applied to an INPUT[text] element. The team name, player name, position, etc of a selection. 
@@ -58,25 +81,3 @@ Rel Attribute Values
 1. draft_year - applied to an A tag, a reference to a single draft. 
 1. home - applied to an A tag, a reference to the main database navigation page. 
 1. selection_info - applied to an A tag, a reference to a single selection.
-
-
-Schema Types and Properties from Schema.org
--------------------------------------------
-1. attendee - a property from Event. A person or organization attending the event.
-1. endDate - a property from Event. The end date of the event (in ISO 8601 date format).
-1. name - a property from Thing. The name of the item.
-1. SportsEvent - http://schema.org/SportsEvent - Event type sports event.
-1. SportsTeam - http://schema.org/Organization/SportsTeam - Organization type sports team.
-1. startDate - a property from Event. The start date of the event (in ISO 8601 date format).
-
-Extension of Schema
---------------------
-Since the types and properties on Schema.org were in some cases too general, extensions were used to better capture the data in the database. 
-
-1. Draft - a type extension of http://schema.org/SportsEvent, a type of event in which professional players are selected to teams.
-1. DraftSelection - a type extension of http://schema.org/Person/Athlete, a type of athlete respective of their role as a draft selection.
-1. draftYear - a property extension of http://schema.org/Person/Athlete/DraftSelection, the year in which the draft selection was selected.
-1. draftRound -  a property extension of http://schema.org/Person/Athlete/DraftSelection, the round in which the draft selection was selected.
-1. pickNumber - a property extension of http://schema.org/Person/Athlete/DraftSelection, the particular order in which the draft selection was selected.
-1. draftTeam - a property extension of http://schema.org/Organization/SportsTeam, the team which made the draft selection. 
-1. position - a property extension of http://schema.org/Organization/SportsTeam, the position for which the draft selection plays. 

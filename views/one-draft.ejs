@@ -10,43 +10,44 @@
         <dl>
             <dt class="year" itemprop="name">Draft Year</dt>
                 <dd itemprop="endDate startDate"><%=item.id%></dd>
-            
+         </dl>   
             <div id="selections">
-                <dt>Selections</dt>
-                  <dd>
-                    <% if (related_items.length > 0) { %>
-                    <ul class="all">
-                      <% related_items.forEach(function(related_item) { %>
-                      
-                      <li class="selection" itemprop="attendee" itemscope itemtype="http://schema.org/Person/Athlete/DraftSelection">
-                        <span itemprop="draftRound">Round <%=related_item.number%></span>
-                        <a href="/selections/<%=related_item._id%>" rel="selection_info" itemprop="url"> 
-                        <span itemprop="name"><%=related_item.name%> Selection </span></a>
-            
-                        <span class="team" itemprop="draftTeam" itemscope itemtype="http://schema.org/Organization/SportsTeam"> <span itemprop="name"><%=related_item.team%> </span> </span>
-                     
-                      </li>
-                      <% }); %>
-                    </ul>
-                    <% } else { %>
-                    No selections have been added.
-                    <% } %>
-                  </dd>
+                <dl>
+                    <dt>Selections</dt>
+                      <dd>
+                        <% if (related_items.length > 0) { %>
+                        <ul class="all">
+                          <% related_items.forEach(function(related_item) { %>
+                          
+                          <li class="selection" itemprop="attendee" itemscope itemtype="http://schema.org/Person/Athlete/DraftSelection">
+                            <span itemprop="draftRound">Round <%=related_item.number%></span>
+                            <a href="/selections/<%=related_item._id%>" rel="selection_info" itemprop="url"> 
+                            <span itemprop="name"><%=related_item.name%> Selection </span></a>
+                
+                            <span class="team" itemprop="draftTeam" itemscope itemtype="http://schema.org/Organization/SportsTeam"> <span itemprop="name"><%=related_item.team%> </span> </span>
+                         
+                          </li>
+                          <% }); %>
+                        </ul>
+                        <% } else { %>
+                        No selections have been added.
+                        <% } %>
+                      </dd>
+                </dl>
             </div>
-        </dl>
     </div>
     
     <div class="nav">
         <p>
             Return to:
-            <a href="/drafts/" rel="all_drafts" >Drafts </a>  </span>  
+            <a href="/drafts/" rel="all_drafts" >Drafts </a>   
         </p>
     </div>   
     
     <div class="instructions">
         <p>
             <br/>
-            <span><strong>Add selection</strong></span> 
+            <strong>Add selection</strong>
         </p>
     </div>
     
@@ -71,7 +72,7 @@
             </span> 
         
         <label>Round Number: 
-             <input name="item[number]" type="text"placeholder="1">
+             <input name="item[number]" type="text" placeholder="1">
         </label>
             <span class="info">
                 Enter the <strong>Round Number</strong> that the selection was made, in ## format.
@@ -105,7 +106,7 @@
     <div class="nav">
         <p>
             Back to
-            <a href="/" rel="home">main </a>  </span> 
+            <a href="/" rel="home">main </a>  
         </p>
     </div>
     
