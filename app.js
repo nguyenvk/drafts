@@ -51,7 +51,7 @@ app.put('/drafts/:id',      // TODO: change to suit your URI design.
       // Otherwise, redirect back to the URI from which the form was submitted.
       else { res.redirect('back' ); }
     });
-  }
+  } 
 );
 
 ////////////////////////////////////////////////////////////////////////////////
