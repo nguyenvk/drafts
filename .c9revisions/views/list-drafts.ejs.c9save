@@ -199,3 +199,5 @@
 {"ts":1367860609309,"patch":[[{"diffs":[[0,"   </div> \r\n"],[1,"     \r\n"],[0,"      <div c"]],"start1":2154,"start2":2154,"length1":24,"length2":31},{"diffs":[[0,"=\"indent\">\r\n"],[1,"       <br/>\r\n"],[0,"            "]],"start1":2189,"start2":2189,"length1":24,"length2":38}]],"length":3100,"saved":false}
 {"ts":1367862042727,"patch":[[{"diffs":[[0,"      \r\n        "],[1," "],[0,"\r\n        <butto"]],"start1":2071,"start2":2071,"length1":32,"length2":33}]],"length":3101,"saved":false}
 {"ts":1367862117787,"patch":[[{"diffs":[[0,"      \r\n        "],[-1," "],[0,"\r\n        <butto"]],"start1":2071,"start2":2071,"length1":33,"length2":32}]],"length":3100,"saved":false}
+{"ts":1367862175203,"patch":[[{"diffs":[[0,"      \r\n        "],[1," "],[0,"\r\n        <butto"]],"start1":2071,"start2":2071,"length1":32,"length2":33}]],"length":3101,"saved":false}
+{"ts":1367862202825,"patch":[[{"diffs":[[0,"     \r\n         "],[1,"   "],[0,"\r\n        <butto"]],"start1":2072,"start2":2072,"length1":32,"length2":35}]],"length":3104,"saved":false}
