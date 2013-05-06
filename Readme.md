@@ -27,7 +27,7 @@ Since the types and properties on Schema.org were in some cases too general, ext
 1. draftTeam - a property extension of http://schema.org/Organization/SportsTeam, the team which made the draft selection. 
 1. position - a property extension of http://schema.org/Organization/SportsTeam, the position for which the draft selection plays. 
 
-ID Attribute Values 
+ID Attribute Values
 -------------------
 1. create - applied to a DIV tag, includes a form for update links. May contain only one form.
 1. delete - applied to a DIV tag, includes a form for delete links. May contain only one form. 

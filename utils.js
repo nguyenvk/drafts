@@ -137,7 +137,7 @@ function authenticateUser(db, req, res, next) {
   if (!auth){
     return authRequired(res, 'Microblog');
   }  
-   
+  
   parts = auth.split(' ');
   scheme = parts[0];
   credentials = new Buffer(parts[1], 'base64').toString().split(':');
