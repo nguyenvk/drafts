@@ -13,7 +13,7 @@
           <% items.forEach(function(item) { %>
           
             <li class="year" itemscope itemtype="http://schema.org/SportsEvent/Draft">
-                <a itemprop="url" href="/drafts/<%=item._id%>" rel="draft_year"> <span itemprop="name"><%=item._id%> </span></a>
+                <a itemprop="url" href="/drafts/<%=item._id%>" rel="draft_year"> <meta content="<%=item._id%> NBA Draft" itemprop="name"> <%=item._id%></a>
             </li>
           <% }); %>
         </ul>
@@ -52,6 +52,15 @@
         <label> 
           <input name="item[name]" type="hidden" value="NBA_Draft">
         </label>
+        
+        <!-- Password included to demonstrate intended functionality but not actually implemented in assignment" -->
+        <label> 
+          Password: <input type="password" name="pass" value="none">
+        </label>
+           <span class="info">
+                Enter the <strong>password </strong> to verify privileges.
+           </span>
+        
         
         <button>Submit</button>
       </form>

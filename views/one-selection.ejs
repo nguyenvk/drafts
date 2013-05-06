@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Selection data: <%=item.year%> <%=item.name%> pick</title>
+    <title>NBA Draft Selection: <%=item.year%> Draft <%=item.name%> Pick</title>
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
@@ -32,7 +32,7 @@
     <div class="nav">
         <p>
             Return to:
-            <a href="/drafts/<%=item.year%>" rel="year_of_selection"><%=item.year%></a> NBA Draft.  
+            <a href="/drafts/<%=item.year%>" rel="draft_year"><%=item.year%></a> NBA Draft.  
         </p>
     </div> 
 
@@ -41,45 +41,64 @@
             <br/>
             <span><strong>Edit selection</strong></span> 
         </p>
-    </div>
     
-    <div id="create">
-          <form class="selection_update" method="post" action="/selections/<%=item._id%>">
-            <input type="hidden" name="_method" value="put">
-            
-            <input type="hidden" name="item[draft]" value="<%=item.draft%>">     
-            
-            <input type="hidden" name="item[year]" value="<%=item.year%>">    
-            
-            <input name="item[name]" type="hidden" value="<%=item.name%>">
-            
-            <input name="item[number]" type="hidden" value="<%=item.number%>">
+    
+        <div id="create">
+              <form class="selection_update" method="post" action="/selections/<%=item._id%>">
+                <input type="hidden" name="_method" value="put">
                 
-            <label>Team Selecting: 
-                <input name="item[team]" type="text" value="<%=item.team%>">
-            </label>
+                <input type="hidden" name="item[draft]" value="<%=item.draft%>">     
+                
+                <input type="hidden" name="item[year]" value="<%=item.year%>">    
+                
+                <input name="item[name]" type="hidden" value="<%=item.name%>">
+                
+                <input name="item[number]" type="hidden" value="<%=item.number%>">
+                    
+                <label>Team Selecting: 
+                    <input name="item[team]" type="text" value="<%=item.team%>">
+                </label>
+        
+                <label>Player Selected: 
+                    <input name="item[player]" type="text" value="<%=item.player%>">
+                </label>
+                
+                <label>Player Position: 
+                     <input name="item[position]" type="text" value="<%=item.position%>">
+                </label>
+                
+                <button>Update</button>
+              </form>
+        </div>
+        
     
-            <label>Player Selected: 
-                <input name="item[player]" type="text" value="<%=item.player%>">
-            </label>
-            
-            <label>Player Position: 
-                 <input name="item[position]" type="text" value="<%=item.position%>">
-            </label>
-            
-            <button>Update</button>
-          </form>
-    </div>
-    
+            <p>
+                <br/>
+                <span><strong>Delete selection</strong></span> 
+            </p>
+            <span class="info">
+                Use this form to delete a selection that no longer exists in the draft. <br />
+                Should only be used if a selection is completely removed, otherwise an edit is more appropriate. 
+            </span> 
+       
+        
         <div id="delete">
-          <form class="selection_delete" method="post" action="/selections/<%=item._id%>">
-            <input type="hidden" name="_method" value="delete">
-            <input type="hidden" name="item[id]" value="<%=item.id%>">            
-            <input type="hidden" name="item[rev]" value="<%=item._rev%>">  
-            <input type="hidden" name="reply" value="/drafts/"/>
-                       
-            <button>Delete</button>
-          </form>
+             <form class="selection_delete" method="post" action="/selections/<%=item._id%>">
+                <input type="hidden" name="_method" value="delete">
+                <input type="hidden" name="item[id]" value="<%=item.id%>">            
+                <input type="hidden" name="item[rev]" value="<%=item._rev%>">  
+                <!-- Password included to demonstrate intended functionality but not actually implemented in assignment" -->
+                <label> 
+                  Password: <input type="password" name="pass" value="none">
+                </label>
+                   <span class="info">
+                        Enter the <strong>password </strong> to verify privileges.
+                   </span>           
+                <button>Delete</button>
+                
+             </form>
+        </div>
+    
     </div>
     
     

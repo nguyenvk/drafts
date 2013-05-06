@@ -20,8 +20,9 @@
                     Round <%=item.number%>:    
                 </span>
                 
-                <span class="pick" itemprop="pickNumber">
-                    <a href="/selections/<%=item._id%>" rel="selection_info"><%=item.name%> Pick</a>  
+                <span class="pick">
+                <meta content="<%=item.name%> Pick" itemprop="pickNumber">
+                    <a itemprop="url" href="/selections/<%=item._id%>" rel="selection_info"><%=item.name%> Pick</a>  
                 </span>
                 <meta class="player" content="<%=item.player%>" itemprop="name">
          </li>
@@ -57,7 +58,7 @@
     <div class="nav">
         <p>
             View all 
-            <a href="/drafts/" rel="all_drafs">drafts </a><br/>
+            <a href="/drafts/" rel="all_drafts">drafts </a><br/>
             Back to
             <a href="/" rel="home">main</a>
         </p>
