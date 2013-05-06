@@ -8,8 +8,9 @@
     
     <div id="drafts" itemscope itemtype="http://schema.org/SportsEvent">
         <dl>
-            <dt class="year" itemprop="name">Draft Year</dt>
-                <dd itemprop="endDate startDate"><%=item.id%></dd>
+            <dt>Draft Year</dt>
+                <dd class="year" itemprop="endDate startDate"><%=item.id%></dd>
+                <meta itemprop="name" content="<%=item.id%> NBA Draft">
          </dl>   
             <div id="selections">
                 <dl>
